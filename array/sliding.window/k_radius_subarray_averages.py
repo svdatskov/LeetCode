@@ -47,25 +47,31 @@ from typing import List
 class Solution:
     def getAverages(self, nums: List[int], k: int) -> List[int]:
         n = len(nums)
-        ans = [-1] * n
-        window_size = 2 * k + 1
+        window_size = k * 2 + 1
         summ = sum(nums[:window_size])
-        right = window_size - 1
+        ans = [-1] * n
         left = 0
+        right = window_size
 
-        while right < n:
-            ans[right - k] = int(summ / nums[0])
+        for i in range(k, n - k):
+            if i > k:
+                summ += nums[right] - nums[left]
+                left += 1
+                right += 1
 
-
-
+            ans[i] = summ // window_size
 
         return ans
 
+
+
 s = Solution()
-print(s.getAverages([7,4,3,9,1,8,5,2,6], 3))
+print(s.getAverages([100000], 0))
 
 
 
 #[7,4,3,9,1,8,5,2,6]
 #[7,11,14,23,24,32,37,39,45]
 
+#[40527,53696,10730,66491,62141,83909,78635,18560]
+#[40527,94223,104953,171444,233585,317494,396129,414689]

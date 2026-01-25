@@ -23,13 +23,19 @@ from typing import List
 
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
-        i = 0
-        j = len(nums) - 1
+        j = 0
 
-        while i < j:
+        for i in range(len(nums)):
+            if nums[i] != 0 and nums[j] != 0:
+                j += 1
+            elif nums[i] != 0 and nums[j] == 0:
+                nums[i], nums[j] = nums[j], nums[i]
+                j += 1
 
+s = Solution()
+array = [0,1,0,3,12]
+s.moveZeroes(array)
+print(array)
 
 # [0,1,0,3,12]
-# [12,1,0,3,0]
-# [3,1,0,12,0]
-# [3,1,0,12,0]
+# [1,0,0,3,12]

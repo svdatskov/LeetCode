@@ -24,21 +24,35 @@
 # 1 <= nums.length <= 105
 # nums[i] is either 0 or 1.
 from typing import List
-from collections import defaultdict
-
 
 class Solution:
     def findMaxLength(self, nums: List[int]) -> int:
-        counts = defaultdict(int)
-        counts[0] = 1
-        ans = curr = 0
+        prefix_map = { 0 : -1 }
+        curr = ans = 0
 
-        for num in nums:
-            curr += num
-            ans = max(ans, )
+        for i, num in enumerate(nums):
+            curr += (num << 1) - 1
+
+            if curr in prefix_map:
+                length = i - prefix_map[curr]
+
+                if length > ans:
+                    ans = length
+            else:
+                prefix_map[curr] = i
+
+        return ans
+
+s = Solution()
+print(s.findMaxLength([0,1]))
+
+
+# [-1,-2,-1,-2,-3,-4,-3,-2]
 
 
 
-[0,1,1,1,1,1,0,0,0]
-[1,0,1,2,3,]
+
+
+# [0,1,1,1,1,1,0,0,0]
+# [-1,0,1,2,3,4,3,2,1]
 

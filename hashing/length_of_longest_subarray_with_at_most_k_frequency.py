@@ -42,8 +42,25 @@ from collections import defaultdict
 class Solution:
     def maxSubarrayLength(self, nums: List[int], k: int) -> int:
         counter_dict = defaultdict(int)
-        left = ans = curr = 0
+        left = ans = 0
+        n = len(nums)
 
-        for right in range(len(nums)):
+        for right in range(n):
+            counter_dict[nums[right]] += 1
+
+            while counter_dict[nums[right]] > k:
+                counter_dict[nums[left]] -= 1
+                left += 1
+
+            ans = max(ans, right - left + 1)
+
+        return ans
+
+s = Solution()
+print(s.maxSubarrayLength([1,2,1,2,1,2,1,2], 1))
 
 
+
+
+
+# [1,2,3,1,2,3,2,1]

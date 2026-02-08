@@ -25,5 +25,26 @@
 # 0 <= s.length <= 5 * 104
 # s consists of English letters, digits, symbols and spaces.
 
+from collections import defaultdict
+
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
+        left = ans = 0
+
+        letter_dictionary = defaultdict(int)
+
+        for right in range(len(s)):
+            if s[right] in letter_dictionary and letter_dictionary[s[right]] >= left:
+                left = letter_dictionary[s[right]] + 1
+                del letter_dictionary[s[right]]
+            else:
+                ans = max(ans, right - left + 1)
+
+            letter_dictionary[s[right]] = right
+
+        return ans
+
+s = Solution()
+
+print(s.lengthOfLongestSubstring("tmmzuxt"))
+

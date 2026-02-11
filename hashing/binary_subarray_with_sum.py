@@ -26,11 +26,28 @@
 # 0 <= goal <= nums.length
 
 from typing import List
+from collections import defaultdict
 
 class Solution:
     def numSubarraysWithSum(self, nums: List[int], goal: int) -> int:
+        sum_dictionary = defaultdict(int)
+        sum_dictionary[0] = 1
+        curr = ans = 0
+
+        for num in nums:
+            curr += num
+            ans += sum_dictionary[curr - goal]
+            sum_dictionary[curr] += 1
+
+        return ans
+
+
+
+s = Solution()
+print(s.numSubarraysWithSum([1,0,1,0,1], 2))
+
 
 
 # [1,0,1,0,1]
 # [1,1,2,2,3]
-#
+# {1: 2, 2:2, 3:1}

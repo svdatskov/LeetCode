@@ -38,4 +38,4 @@ class Solution:
 
 
 s = Solution()
-print(s.subarraySum([1, 2, 1, 2, 1], 3))
+print(s.subarraySum([0,0,0,0,0], 0))

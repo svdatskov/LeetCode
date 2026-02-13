@@ -20,10 +20,35 @@
 # 1 <= s1.length, s2.length <= 104
 # s1 and s2 consist of lowercase English letters.
 
+from collections import Counter, defaultdict
+
+
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
-        if len(s2) < len(s1):
-            return False
+        count_dict_1 = Counter(s1)
+        count_dict_2 = Counter()
+
+        left = 0
+
+        for right in range(len(s2)):
+            count_dict_2[s2[right]] += 1
+
+            while count_dict_2[s2[right]] > count_dict_1[s2[right]]:
+                count_dict_2[s2[left]] -= 1
+                left += 1
+
+
+            if count_dict_1 == count_dict_2:
+                return True
+
+
+        return False
+
+s = Solution()
+print(s.checkInclusion("a", "ab"))
+
+
+
 
 
 

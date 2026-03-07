@@ -54,10 +54,10 @@ class Solution:
             min_suffix[i] = char
 
         for i in range(n):
-            if s[i] == min_suffix[i]:
-                answer.append(s[i])
-            else:
-                stack.append(s[i])
+            while stack and stack[-1] <= min_suffix[i]:
+                answer.append(stack.pop())
+
+            stack.append(s[i])
 
         while stack:
             answer.append(stack.pop())
@@ -66,5 +66,6 @@ class Solution:
 
 s = Solution()
 print(s.robotWithString("bac"))
+print(s.robotWithString("bydizfve"))
 
 

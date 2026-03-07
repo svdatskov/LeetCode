@@ -32,25 +32,52 @@
 from typing import List
 from collections import deque
 
-class Solution:
-    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        queue = deque()
-        answer = []
+# class Solution:
+#     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+#         queue = deque()
+#         answer = []
+#
+#         for i in range(len(nums)):
+#             while queue and nums[i] > nums[queue[-1]]:
+#                 queue.pop()
+#
+#             queue.append(i)
+#
+#             if queue[0] + k == i:
+#                 queue.popleft()
+#
+#             if i >= k - 1:
+#                 answer.append(nums[queue[0]])
+#
+#         return answer
+#
+# s = Solution()
+# print(s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
 
-        for i in range(len(nums)):
-            while queue and nums[i] > nums[queue[-1]]:
-                queue.pop()
 
-            queue.append(i)
+# class Solution:
+#     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+#         queue = deque()
+#         answer = []
+#
+#         for i in range(len(nums)):
+#             while queue and nums[queue[-1]] <= nums[i]:
+#                 queue.pop()
+#
+#             queue.append(i)
+#
+#             if queue[0] + k == i:
+#                 queue.popleft()
+#
+#             if i >= k - 1:
+#                 answer.append(nums[queue[0]])
+#
+#         return answer
 
-            if queue[0] + k == i:
-                queue.popleft()
 
-            if i >= k - 1:
-                answer.append(nums[queue[0]])
 
-        return answer
+# s = Solution()
+# print(s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
 
-s = Solution()
-print(s.maxSlidingWindow([1,3,-1,-3,5,3,6,7], 3))
+
 

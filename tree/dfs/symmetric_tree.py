@@ -18,9 +18,6 @@
 #
 # The number of nodes in the tree is in the range [1, 1000].
 # -100 <= Node.val <= 100
-#
-#
-# Follow up: Could you solve it both recursively and iteratively?
 
 from typing import Optional
 
@@ -36,10 +33,7 @@ class Solution:
             if not right_node and not left_node:
                 return True
 
-            if left_node and not right_node:
-                return False
-
-            if right_node and not left_node:
+            if not right_node or not left_node:
                 return False
 
             return (right_node.val == left_node.val and

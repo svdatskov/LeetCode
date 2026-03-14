@@ -1,3 +1,4 @@
+from collections import deque
 from typing import Optional, List
 
 # Definition for a binary tree node.
@@ -14,11 +15,12 @@ class Solution:
             return ans
 
         queue = deque([root])
-        reverse = 1
+        order = -1
 
         while queue:
             nodes_in_current_section = len(queue)
-            section = []
+            section = [0] * nodes_in_current_section
+            iterator = nodes_in_current_section - 1 if order else 0
 
             for _ in range(nodes_in_current_section):
                 node = queue.popleft()
@@ -29,9 +31,14 @@ class Solution:
                 if node.right:
                     queue.append(node.right)
 
-                section.append(node.val)
+                section[iterator] = node.val
+
+                if order:
+                    iterator -= 1
+                else:
+                    iterator += 1
 
             ans.append(section)
-            reverse *= -1
+            order *= -1
 
         return ans

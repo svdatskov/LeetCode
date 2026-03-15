@@ -22,6 +22,11 @@ class Solution:
             for _ in range(level_size):
                 node = queue.popleft()
 
+                is_even = current_level % 2
+
+                if (not is_even and not node.val % 2) or (is_even and node.val % 2):
+                    return False
+
                 if node.left:
                     queue.append(node.left)
 
@@ -29,10 +34,7 @@ class Solution:
                     queue.append(node.right)
 
                 if prev_val:
-                    is_odd = current_level % 2
-                    is_invalid_level_size = level_size != current_level
-
-                    if (is_odd and prev_val >= node.val) or (not is_odd and prev_val <= node.val) or is_invalid_level_size:
+                    if prev_val and ((is_even and prev_val <= node.val) or (not is_even and prev_val >= node.val)):
                         return False
 
                 prev_val = node.val

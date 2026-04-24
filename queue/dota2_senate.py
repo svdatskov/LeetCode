@@ -41,5 +41,6 @@ from collections import deque
 
 class Solution:
     def predictPartyVictory(self, senate: str) -> str:
+        pass
 
 
